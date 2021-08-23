@@ -1,0 +1,134 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="main.css"> -->
+    <title>Internship Project</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Mate SC', serif;
+        }
+        
+      
+      .text{
+          margin: 15px 0;
+          background-color: purple;
+          margin: auto;
+          display: block;
+          width: 250px;
+          margin-bottom: 50px;
+          color: #fff;
+          text-align: center;
+      }
+      .btn-primary{
+          background-color: #7309d6;
+          padding: 8px 15px;
+          border-radius: 0;
+          outline: none;
+          border:  none;
+      }
+      
+    </style>
+  </head>
+  <body >
+    <br><br>
+    <div class="container">
+        
+        <div class="text">
+           <h3>Fetch Data</h3>
+        </div>
+        <div class="tab">
+          
+                <div class="text-center">
+                  
+                  <a href="index.html" class="btn btn-primary ">Pick a Color</a>  &nbsp; &nbsp; &nbsp;
+                  <a href="fetch.html" class="btn btn-primary ">Fetch Data</a>
+                </div>
+           
+        </div>
+        <hr>
+    </div>
+    <div class="container p-4">
+        <div class="text-center">
+            <button class="btn btn-primary" id="fetch-button">Get Data</button>
+        </div>
+        <div class="row">
+            <table class="table table-dark mt-5">
+                <thead id="toptable">
+                  
+                </thead>
+                <tbody id="result">
+                  
+                 
+                </tbody>
+              </table>
+            
+        </div>
+    </div>
+    
+    
+  
+    
+
+
+
+        
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+     $(document).ready(function(){
+
+        $("#fetch-button").on("click",function(e){
+           console.log("hii")
+           $.ajax({
+        url : "https://jsonplaceholder.typicode.com/users",
+        type : "GET",
+        success : function(data){
+        //  console.log(data)
+$('#toptable').append(`
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Number</th>
+                  </tr>
+`)
+
+         $.each(data, function(index, value){
+            $("#result").append(`
+                 <tr>
+                    <td>${value.name}</td>
+                    <td>${value.email}</td>
+                    <td>${value.phone}</td>
+                  </tr>
+            
+            `);
+        });
+        
+
+        
+            }
+
+
+        })
+    })
+        
+
+     })
+</script>
+  </body>
+</html>
